@@ -1,0 +1,1056 @@
+/* --- IMPORTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');
+
+/* --- 1. DESIGN TOKENS --- */
+:root {
+    --bg-deep: #030308;
+    --accent-purple: #9d4edd;
+    --accent-cyan: #00b4d8;
+    --glass-surface: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* --- 2. BACKGROUND MESH --- */
+.background-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(86, 11, 173, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(72, 202, 228, 0.15) 0%, transparent 50%);
+    filter: blur(60px);
+}
+
+/* --- 3. NAVIGATION --- */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0.8rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+nav.scrolled {
+    background: rgba(3, 3, 8, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, #fff, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 2;
+    flex-shrink: 0; 
+}
+
+.nav-links {
+    position: static;
+    transform: none;
+    display: flex;
+    gap: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    white-space: nowrap; 
+}
+
+.nav-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.mobile-menu-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* --- 4. HERO SECTION --- */
+.hero {
+    min-height: 90vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px 60px; 
+    position: relative; 
+    overflow: hidden;   
+}
+
+/* --- SRK HEADER --- */
+.srk-quantum-header {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    gap: 30px; 
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.header-left .main-logo {
+    height: 140px; 
+    width: auto;
+    filter: drop-shadow(0 0 20px rgba(0, 180, 216, 0.3)); 
+    transition: transform 0.3s;
+}
+
+.header-left .main-logo:hover {
+    transform: scale(1.05);
+}
+
+.header-center {
+    text-align: center;
+    padding: 0 10px;
+}
+
+.institution-name {
+    font-size: 2.5rem; 
+    margin: 0 0 15px 0;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, var(--accent-cyan), #ffffff, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0, 180, 216, 0.2);
+}
+
+.details-line {
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    margin: 6px 0;
+    font-weight: 500;
+}
+
+.details-line.small {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.details-line.location {
+    font-size: 0.95rem;
+    color: var(--accent-cyan);
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header-right .badge {
+    height: 70px; 
+    width: auto;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.9);
+    padding: 4px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+/* --- CYBER COLLEGE OVERLAY --- */
+.cyber-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    opacity: 0.6; 
+}
+
+.cyber-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(40%) contrast(120%) sepia(100%) hue-rotate(130deg) saturate(200%);
+    animation: zoomIn 10s ease-out infinite alternate;
+}
+
+.overlay-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-deep) 90%);
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+/* ==========================================================================
+   5. NEW CARDS (FIXED: NO OVERLAP)
+   ========================================================================== */
+.section-container {
+    max-width: 1200px;
+    margin: 20px auto 80px auto; 
+    padding: 0 20px;
+    position: relative; 
+    z-index: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    
+    /* ANIMATION INIT: Slide UP instead of SIDEWAYS */
+    opacity: 0; 
+    transform: translateY(50px); /* Start lower */
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0); /* Rise to normal position */
+}
+
+/* Delays for Wave Effect */
+.card:nth-child(1) { transition-delay: 0.1s; }
+.card:nth-child(2) { transition-delay: 0.3s; }
+.card:nth-child(3) { transition-delay: 0.5s; }
+
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition-delay: 0s; 
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: var(--accent-cyan);
+}
+
+.card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.card-icon svg { width: 30px; height: 30px; stroke-width: 2; }
+.cyan-glow svg { stroke: var(--accent-cyan); }
+.card:hover .cyan-glow { box-shadow: 0 0 20px rgba(0, 180, 216, 0.4); transform: scale(1.1); }
+.purple-glow svg { stroke: var(--accent-purple); }
+.card:hover .purple-glow { box-shadow: 0 0 20px rgba(157, 78, 221, 0.4); transform: scale(1.1); }
+.magenta-glow svg { stroke: #ff00ff; }
+.card:hover .magenta-glow { box-shadow: 0 0 20px rgba(255, 0, 255, 0.4); transform: scale(1.1); }
+
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+footer {
+    margin-top: 80px;
+    background: linear-gradient(to bottom, rgba(3,3,8,0.95), #000);
+    padding: 0;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-gradient-line {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), transparent);
+    box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+/* Brand Col */
+.footer-logo {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    margin-top: 0;
+}
+.footer-logo .highlight { color: var(--accent-cyan); }
+.footer-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Link Cols */
+.footer-col h5 {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0;
+}
+
+.links-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.links-col a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s, padding-left 0.3s;
+}
+.links-col a:hover {
+    color: var(--accent-cyan);
+    padding-left: 5px;
+}
+
+/* Social Col */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.social-btn:hover {
+    background: var(--accent-cyan);
+    color: black;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--accent-cyan);
+}
+.copyright {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .institution-name { font-size: 2rem; }
+    .mobile-menu-icon { display: block; }
+
+    .nav-links {
+        display: none; 
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(5, 5, 16, 0.95); 
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 10px 0; 
+        gap: 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a {
+        padding: 12px 0;
+        text-align: center;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03); 
+        font-size: 0.95rem; 
+        letter-spacing: 2px;
+    }
+    
+    .nav-links a:last-child { border-bottom: none; }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--accent-cyan);
+        text-shadow: none; 
+    }
+}
+
+@media (max-width: 768px) {
+    .header-left .main-logo { height: 100px; }
+    .institution-name { font-size: 1.6rem; }
+    .header-right .badge { height: 50px; }
+    .cyber-overlay img { opacity: 0.4; } 
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    .links-col { align-items: center; }
+    .social-icons { justify-content: center; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================================================
+   7. INNER PAGE STYLES (Events, Schedule, etc.)
+   ========================================================================== */
+
+/* Page Hero (Shorter than Index Hero) */
+.page-hero {
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 100px; /* Space for Navbar */
+    position: relative;
+    overflow: hidden;
+}
+.page-title, .page-subtitle {
+    position: relative;
+    z-index: 2;
+}
+.page-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0;
+    color: white;
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Card Actions (Buttons & Links) */
+.card-actions {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.link-view {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.link-view:hover {
+    color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
+    padding-left: 5px;
+}
+
+/* Neon Register Button */
+.btn-event {
+    background: linear-gradient(90deg, var(--accent-purple), #7b2cbf);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.btn-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(157, 78, 221, 0.6);
+}
+
+/* ==========================================================================
+   8. MODAL STYLES (Google Form Popup)
+   ========================================================================== */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark overlay */
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: #1a1a2e;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 600px;
+    height: 80vh;
+    border-radius: 12px;
+    position: relative;
+    border: 1px solid var(--accent-cyan);
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 15px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+    color: white;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-header h3 { margin: 0; }
+
+.close-btn {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10;
+}
+
+.close-btn:hover { color: #ff4444; }
+
+#googleForm {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0 0 12px 12px;
+    background: white; /* Forms look better on white */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Font for Inner Pages */
+@media (max-width: 768px) {
+    .page-title { font-size: 2.5rem; }
+    .modal-content { margin: 10% auto; height: 70vh; }
+}
+/* ==========================================================================
+   9. EVENTS SINGLE ROW LAYOUT
+   ========================================================================== */
+
+.events-grid-row {
+    display: grid;
+    /* This forces exactly 4 equal columns. */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    width: 100%;
+}
+
+/* Ensure cards take full height/width of their grid cell */
+.events-grid-row .card {
+    width: 100%;
+    margin: 0;
+    /* Reset transforms for grid layout */
+    transform: translateY(50px);
+    opacity: 0;
+    
+    /* Ensure they don't break flex layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Card Animation (Slide Up) */
+.events-grid-row .card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- RESPONSIVE HANDLING --- */
+/* On Tablets (below 1024px), 4 columns are too squished, so we switch to 2x2 */
+@media (max-width: 1024px) {
+    .events-grid-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* On Mobile (below 600px), we stack them 1x4 */
+@media (max-width: 600px) {
+    .events-grid-row {
+        grid-template-columns: 1fr;
+    }
+}
+/* ==========================================================================
+   10. SCHEDULE TABLE (HOLOGRAPHIC GRID)
+   ========================================================================== */
+
+/* The Container for the Table */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow-x: auto; /* Handles scroll on very small screens */
+}
+
+.quantum-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Headers */
+.quantum-table thead tr {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.quantum-table th {
+    text-align: left;
+    padding: 20px;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Rows */
+.quantum-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background 0.3s;
+}
+
+.quantum-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.quantum-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.quantum-table td {
+    padding: 20px;
+    color: var(--text-secondary);
+}
+
+/* Specific Column Styling */
+.table-event-name {
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.time-col {
+    color: var(--accent-purple) !important;
+    font-family: 'Courier New', monospace; /* Tech feel for numbers */
+    font-weight: bold;
+    letter-spacing: -0.5px;
+}
+
+/* Glowing Dots */
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px currentColor;
+}
+.indicator.cyan { background-color: var(--accent-cyan); color: var(--accent-cyan); }
+.indicator.purple { background-color: var(--accent-purple); color: var(--accent-purple); }
+.indicator.magenta { background-color: #ff00ff; color: #ff00ff; }
+
+/* Status Badge */
+.badge-status {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- RESPONSIVE TABLE (Card View for Mobile) --- */
+@media (max-width: 768px) {
+    .quantum-table thead {
+        display: none; /* Hide headers on mobile */
+    }
+
+    .quantum-table, .quantum-table tbody, .quantum-table tr, .quantum-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .quantum-table tr {
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 15px;
+    }
+
+    .quantum-table td {
+        padding: 10px 0;
+        text-align: right; /* Content on right */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .quantum-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* Add labels using the data-label attribute */
+    .quantum-table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--accent-cyan);
+        font-size: 0.8rem;
+    }
+}
+/* ==========================================================================
+   11. FULL PAGE BACKGROUND (Fixed)
+   ========================================================================== */
+
+.full-page-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -5; /* Place absolutely behind everything */
+}
+
+.full-page-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    /* Darken and tint the image to match the site theme */
+    filter: brightness(30%) contrast(120%) sepia(50%) hue-rotate(190deg) saturate(150%);
+    
+    /* Optional: Slow zoom effect */
+    animation: bgZoom 30s infinite alternate ease-in-out;
+}
+
+/* Dark overlay to ensure text is readable */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 3, 8, 0.7); /* Deep dark tint */
+}
+
+@keyframes bgZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+/* ==========================================================================
+   12. QUANTUM MAP SECTION
+   ========================================================================== */
+
+.map-section {
+    max-width: 1200px;
+    margin: 80px auto 0 auto; /* Top margin, no bottom margin (connects to footer) */
+    padding: 0 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.map-header {
+    margin-bottom: 30px;
+}
+
+.map-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.map-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.map-container {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    padding: 10px; /* Creates a glass border effect around the map */
+    /* Glass Effect inherited from .glass-effect class, but specific tweaks here: */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(0, 180, 216, 0.1); /* Subtle cyan glow */
+    overflow: hidden;
+}
+
+.quantum-map {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
+    
+    /* --- THE DARK MODE MAGIC --- */
+    /* This inverts the white map to black, and rotates hue to match blue/cyan */
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+    
+    transition: filter 0.5s ease;
+}
+
+/* Optional: On hover, brighten slightly for clarity */
+.map-container:hover .quantum-map {
+    filter: invert(100%) hue-rotate(180deg) brightness(110%) contrast(100%);
+    cursor: grab;
+}
+
+/* Responsive Map Height */
+@media (max-width: 768px) {
+    .map-container {
+        height: 300px;
+    }
+    .map-header h2 {
+        font-size: 2rem;
+    }
+}
+/* ==========================================================================
+   13. VISIT US SECTION (Split Layout)
+   ========================================================================== */
+
+.visit-section {
+    max-width: 1200px;
+    margin: 80px auto 40px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* The Main Glass Container */
+.visit-container {
+    display: flex; /* Creates the split layout */
+    background: rgba(25, 25, 40, 0.6); /* Slightly darker glass */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden; /* Keeps the map inside the rounded corners */
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* --- Left Side: Text --- */
+.visit-text {
+    flex: 1; /* Takes up 50% width */
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.visit-text .eyebrow {
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.visit-text h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+}
+
+.visit-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.location-info {
+    margin-bottom: 25px;
+}
+
+.location-info h4 {
+    color: white;
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+}
+
+.location-info p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* The Purple Button */
+.btn-directions {
+    display: inline-block;
+    background: linear-gradient(90deg, #7b2cbf, var(--accent-purple));
+    color: white;
+    padding: 15px 35px;
+    border-radius: 8px; /* Slightly squarer like the reference image */
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    align-self: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-directions:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+}
+
+/* --- Right Side: Map --- */
+.visit-map-wrapper {
+    flex: 1; /* Takes up the other 50% width */
+    position: relative;
+    min-height: 400px; /* Ensures it has height on mobile */
+    background: #000; /* Fallback color */
+}
+
+.quantum-map {
+    width: 100%;
+    height: 100%;
+    border: none;
+    
+    /* Dark Mode Filter for the Map */
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* --- Responsive (Stack vertically on mobile) --- */
+@media (max-width: 900px) {
+    .visit-container {
+        flex-direction: column;
+    }
+    
+    .visit-text {
+        padding: 40px;
+    }
+    
+    .visit-map-wrapper {
+        height: 300px;
+    }
+}
